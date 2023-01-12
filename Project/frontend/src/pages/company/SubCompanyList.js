@@ -93,16 +93,16 @@ function SubCompanyList() {
                     
                 </Form.Select>
             </div>
-          <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginTop:20,alignItems:'center'}}>
+          {/* <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginTop:20,alignItems:'center'}}>
                     Search By Location :<br></br>
                 <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
                             <option value = ''  selected>Select Company Location</option>
                         {Company.map((e,i) =>(
-                            <option key={i} value={e.Name}>{e.Location}</option>
+                            <option key={i} value={e.Location}>{e.Location}</option>
                         ))}
                     
                 </Form.Select>
-            </div>
+            </div> */}
 
 
         {loading ? (<div style={{display : 'flex',justifyContent : 'center',alignItems : 'center',height : '100%',marginTop : '10%'}}><HashLoader color="#3637da" /> </div>) : (
@@ -124,11 +124,6 @@ function SubCompanyList() {
                     if(search === ""){
                         return element
                     }else if ((element.SubName.toLowerCase()).includes(search.toLowerCase())){
-                        return element
-                    }else if ((element.MainCompanyName.toLowerCase()).includes(search.toLowerCase())){
-                        return element
-                    }
-                    else if ((element.SubLocation.toLowerCase()).includes(search.toLowerCase())){
                         return element
                     }
                 }).map((e,i) =>(

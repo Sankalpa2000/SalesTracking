@@ -10,31 +10,39 @@ function SubCompanyInsert() {
     const [SubLocation,setSubLocation] = useState();
     const [Company,setCompany] = useState([]);
     const [DataArray,setDataArray] = useState([]);
+    const [MainCompany,setMainCompany] = useState();
+    // const [MainCompanyName,setMainCompanyName] = useState();
     // const [MainCompanyID,setMainCompanyID] = useState();
-    const [MainCompanyName,setMainCompanyName] = useState();
+    // const [MainCompanyLocation,setMainCompanyLocation] = useState();
     
     const SubCompany = ( (e) => {
         e.preventDefault();
         
-        console.log(MainCompanyName.split("-")[0]);
-        console.log(MainCompanyName.split("-")[1]);
-        console.log(MainCompanyName.split("-")[2]);
-
-        // const Sub = {
-        //     MainCompanyName,
-        //     SubName,
-        //     SubLocation
-        // }
-        // axios.post("http://localhost:8080/SubCompany/Add",Sub).then((res) => {
-        //     alert('data inserted')
-        // }).catch(err => {
-        //    alert(err)
-        // //    alert(err.state)
+        const MainCompanyName = (MainCompany.split("-")[0]);
+        const MainCompanyLocation = (MainCompany.split("-")[1]);
+        const MainCompanyID = (MainCompany.split("-")[2]);
+        console.log(MainCompanyName)
+        console.log(MainCompanyLocation)
+        console.log(MainCompanyID)
+        
+        const Sub = {
+            MainCompanyName,
+            MainCompanyID,
+            MainCompanyLocation,
+            SubName,
+            SubLocation
+        }
+        console.log(Sub);
+        axios.post("http://localhost:8080/SubCompany/Add",Sub).then((res) => {
+            alert('data inserted')
+        }).catch(err => {
+           alert(err)
+        //    alert(err.state)
             
-        // })
-        // DataArray.push(Sub);
-        // setSubName('');
-        // setSubLocation('');
+        })
+            DataArray.push(Sub);
+            setSubName('');
+            setSubLocation('');
     })
     useEffect(() => {
         
@@ -54,7 +62,7 @@ function SubCompanyInsert() {
                 <h4  style={{marginBottom : '30px'}}>
                 Sub Company Details             </h4>
                 <Form.Group  className=' mb-3'>
-                    <Form.Select onChange = {(e)=>{setMainCompanyName(e.target.value)}} required >
+                    <Form.Select onChange = {(e)=>{setMainCompany(e.target.value)}} required >
                     <option value = 'select'  selected>Select Main Company</option>
                         {Company.map((e,i) =>(
                     <option key={i} value={`${e.Name}-${e.Location}-${e._id}`}>{e.Name}-{e.Location}</option>

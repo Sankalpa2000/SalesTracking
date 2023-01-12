@@ -16,7 +16,7 @@ export default function NavBar() {
           <Nav.Link href="/CustomerList">Customer</Nav.Link>
           <Nav.Link href="/Customer">Customer Reg</Nav.Link>
           <Nav.Link href="/Company">Company</Nav.Link>
-          <Nav.Link href="/AddCampany">Visit Palnner</Nav.Link>
+          <Nav.Link href="/Planner">Visit Palnner</Nav.Link>
           <Nav.Link href="/Register">Reports</Nav.Link>
         </Nav>
       </Navbar.Collapse>
