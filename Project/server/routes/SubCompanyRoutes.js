@@ -13,10 +13,17 @@ router.route("/").get(async (req,res) => {
 
 //Insert Data
 router.route("/Add").post(async(req,res) => {
-    const { MainCompanyName , SubName , SubLocation} = req.body;
+    const { 
+        MainCompanyName ,
+        MainCompanyID ,
+        MainCompanyLocation ,
+        SubName , 
+        SubLocation } = req.body;
     console.log(SubName);
     const newSubCompany = new SubCompany({
         MainCompanyName,
+        MainCompanyID,
+        MainCompanyLocation,
         SubName,
         SubLocation
     })
@@ -44,11 +51,15 @@ router.route("/Update").put(async(req,res) => {
     console.log(id);
     const {
         MainCompanyName,
+        MainCompanyID,
+        MainCompanyLocation,
         SubName,
         SubLocation} = req.body;
 
     const dataSample = {
         MainCompanyName,
+        MainCompanyID,
+        MainCompanyLocation,
         SubName,
         SubLocation
     }

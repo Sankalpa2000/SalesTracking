@@ -7,6 +7,14 @@ var SubCompany = new mongoose.Schema({
         required:true,
         type:String,
     },
+    MainCompanyID:{
+        required:true,
+        type:String,
+    },
+    MainCompanyLocation:{
+        required:true,
+        type:String,
+    },
     SubName:{
         type:String,
         required:true,
