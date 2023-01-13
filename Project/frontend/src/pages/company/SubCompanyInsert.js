@@ -18,17 +18,6 @@ function SubCompanyInsert() {
     const SubCompany = ( (e) => {
         e.preventDefault();
         
-<<<<<<< HEAD
-        console.log(MainCompanyName.split("-")[0]);
-        console.log(MainCompanyName.split("-")[1]);
-        console.log(MainCompanyName.split("-")[2]);
-
-        const Sub = {
-            MainCompanyName,
-            SubName,
-            SubLocation
-        }
-=======
         const MainCompanyName = (MainCompany.split("-")[0]);
         const MainCompanyLocation = (MainCompany.split("-")[1]);
         const MainCompanyID = (MainCompany.split("-")[2]);
@@ -44,7 +33,6 @@ function SubCompanyInsert() {
             SubLocation
         }
         console.log(Sub);
->>>>>>> dd884f6ffc70c0876f42e7716fe64669db055f0e
         axios.post("http://localhost:8080/SubCompany/Add",Sub).then((res) => {
             alert('data inserted')
         }).catch(err => {
@@ -52,15 +40,9 @@ function SubCompanyInsert() {
         //    alert(err.state)
             
         })
-<<<<<<< HEAD
-        DataArray.push(Sub);
-        setSubName('');
-        setSubLocation('');
-=======
             DataArray.push(Sub);
             setSubName('');
             setSubLocation('');
->>>>>>> dd884f6ffc70c0876f42e7716fe64669db055f0e
     })
     useEffect(() => {
         
