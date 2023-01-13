@@ -11,8 +11,8 @@ function SubCompanyEdit() {
   const [SubName,setSubName] = useState();
   const [SubLocation, setSubLocation] = useState();
   const [id,SetID] = useState();
-  const [Company,setCompany] = useState();
-  const [SubCompany,setSubCompany] = useState();
+  const [MainCompanyID,setMainCompanyID] = useState();
+  const [MainCompanyLocation,setMainCompanyLocation] = useState();
   const [MainCompanyName,setMainCompanyName] = useState();
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,17 +20,15 @@ function SubCompanyEdit() {
 
   const data = location.state.data;
   useEffect(() => {
+    console.log(data);
     
     try {
-        console.log(data);
-        setMainCompanyName(data.MainCompanyID)
-        console.log(MainCompanyName);
+        setMainCompanyName(data.MainCompanyName)
+        setMainCompanyID(data.MainCompanyID)
+        setMainCompanyLocation(data.MainCompanyLocation)
         SetID(data._id)
-        console.log(id);
         setSubName(data.SubName)
-        console.log(SubName);
         setSubLocation(data.SubLocation)
-        console.log(SubLocation);
         
       } catch (error) {
         navigate(-1)
@@ -41,9 +39,11 @@ function SubCompanyEdit() {
 
       const dataSample = {
         id,
+        MainCompanyName,
+        MainCompanyID,
+        MainCompanyLocation,
         SubName,
-        SubLocation,
-        MainCompanyName
+        SubLocation
       }
       console.log(dataSample);
       axios.put("http://localhost:8080/SubCompany/Update",dataSample).then((res) => {
