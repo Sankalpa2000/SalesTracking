@@ -20,21 +20,21 @@ function SubCompanyInsert() {
         console.log(MainCompanyName.split("-")[1]);
         console.log(MainCompanyName.split("-")[2]);
 
-        // const Sub = {
-        //     MainCompanyName,
-        //     SubName,
-        //     SubLocation
-        // }
-        // axios.post("http://localhost:8080/SubCompany/Add",Sub).then((res) => {
-        //     alert('data inserted')
-        // }).catch(err => {
-        //    alert(err)
-        // //    alert(err.state)
+        const Sub = {
+            MainCompanyName,
+            SubName,
+            SubLocation
+        }
+        axios.post("http://localhost:8080/SubCompany/Add",Sub).then((res) => {
+            alert('data inserted')
+        }).catch(err => {
+           alert(err)
+        //    alert(err.state)
             
-        // })
-        // DataArray.push(Sub);
-        // setSubName('');
-        // setSubLocation('');
+        })
+        DataArray.push(Sub);
+        setSubName('');
+        setSubLocation('');
     })
     useEffect(() => {
         

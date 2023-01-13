@@ -28,10 +28,10 @@ router.route("/Add").post(async(req,res) => {
     })
 }) 
 
-router.route("/getSubCompany/:id").get(async (req,res) =>{
+router.route("/:id").get(async (req,res) =>{
     const id = req.params.id;
     console.log(id);
-    await SubCompany.find({MainCompanyName:id}).then((SendData)=>{
+    await SubCompany.findById({MainCompanyID:id}).then((SendData)=>{
         console.log(SendData);
         res.status(200).send({SendData:SendData})
     }).catch(err =>{
