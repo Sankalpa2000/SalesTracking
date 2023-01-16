@@ -18,6 +18,7 @@ export default function NavBar() {
           <Nav.Link href="/Company">Company</Nav.Link>
           <Nav.Link href="/Planner">Visit Palnner</Nav.Link>
           <Nav.Link href="/Register">Reports</Nav.Link>
+          <Nav.Link href="/AddTask">Add Task</Nav.Link>
         </Nav>
       </Navbar.Collapse>
         <Nav.Link style={{marginRight:'10px'}} href='/Login'> Login </Nav.Link>

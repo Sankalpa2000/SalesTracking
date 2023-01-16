@@ -15,6 +15,7 @@ import Login from './pages/main/Login';
 import Planner from './pages/calender/Planner';
 import RegistrationForm from "./pages/main/RegistrationForm";
 import UserList from './pages/main/UserList';
+import CalenderInsert from './pages/calender/CalenderInsert';
 
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
           <Route exact path='/EditCustomer' element={<CustomerEdit/>}/>
           <Route exact path='/SubCompany' element={<SubCompanyList/>}/>
           <Route exact path='/EditSubCompany' element={<SubCompanyEdit/>}/>
+          <Route exact path='/AddTask' element={<CalenderInsert/>}/>
+          
 
         </Routes>
     </>

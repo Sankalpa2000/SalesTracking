@@ -35,4 +35,7 @@ const Company = require('./routes/CompanyRoutes.js');
 app.use("/Company" , Company); 
 
 const SubCompany = require('./routes/SubCompanyRoutes.js');
-app.use("/SubCompany" , SubCompany); 
+app.use("/SubCompany" , SubCompany);
+
+const Task = require('./routes/TaskRoutes.js')
+app.use("/Task" , Task); 
