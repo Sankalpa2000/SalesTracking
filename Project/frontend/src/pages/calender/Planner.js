@@ -20,7 +20,7 @@ import '@progress/kendo-date-math/tz/Asia/Tokyo';
 import '@progress/kendo-date-math/tz/America/New_York';
 import '@progress/kendo-date-math/tz/America/Los_Angeles';
 // import esMessages from './es.json';
-import { sampleDataWithCustomSchema, displayDate, customModelFields } from './CalenderData';
+import { sampleDataWithCustomSchema, displayDate, customModelFields } from './events-utc';
 import Container from 'react-bootstrap/esm/Container';
 load(likelySubtags, currencyData, weekData, numbers, currencies, caGregorian, dateFields, timeZoneNames);
 // loadMessages(esMessages, 'es-ES');

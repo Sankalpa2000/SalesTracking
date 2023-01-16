@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios"
 var setTask;
-var Task;
+var Task = 'Hi';
 
+// export function setData() {
+  
+// }
+// useEffect(() =>{
 
-  axios.get("http://localhost:8080/Task/").then((res) =>{
-          setTask = res.data.Task.Title
-          console.log(setTask);
-      }).catch((e) =>{
-          alert(e)
-      })
+//   const [data,setData] = useState();
+//   axios.get("http://localhost:8080/Task/").then((res) =>{
+//           setTask = res.data.Task.Title
+//           console.log(setTask);
+//       }).catch((e) =>{
+//           alert(e)
+//       })
 
+// },[])
 const baseData = [{
 
-    "TaskID": 4,
+    "TaskID": Task,
     "OwnerID": 2,
     "Title": "Bowling tournament",
-    "Description": "",
+    "Description": Task,
     "StartTimezone": null,
     "Start": "2023-01-09T21:00:00.000Z",
     "End": "2023-01-10T00:00:00.000Z",
@@ -25,21 +31,9 @@ const baseData = [{
     "RecurrenceID": null,
     "RecurrenceException": null,
     "isAllDay": true
-  }, {
-    "TaskID": 120,
-    "OwnerID": 3,
-    "Title": "Website upload",
-    "Description": "",
-    "StartTimezone": null,
-    "Start": "2023-01-16T07:00:00.000Z",
-    "End": "2023-01-16T08:30:00.000Z",
-    "EndTimezone": null,
-    "RecurrenceRule": "",
-    "RecurrenceID": null,
-    "RecurrenceException": null,
-    "isAllDay": false
-   }
-  ];
+  }];
+
+
   export const customModelFields = {
     id: 'TaskID',
     title: 'Title',
