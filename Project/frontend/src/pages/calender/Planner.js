@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import * as ReactDOM from 'react-dom';
 import { guid } from '@progress/kendo-react-common';
 import { timezoneNames } from '@progress/kendo-date-math';
@@ -30,15 +31,29 @@ const Planner = () => {
   const locales = [{
     language: 'en-US',
     locale: 'en'
-  }, {
-    language: 'es-ES',
-    locale: 'es'
   }];
-  const [view, setView] = React.useState('day');
+  React.useEffect((e) => {
+        
+    axios.get("http://localhost:8080/Company/").then((res) =>{
+        setCompany(res.data.Company);
+        // console.log(Company);
+        
+        // setTimeout(() => {
+            // setLoading(false);
+            //   }, 1000);
+            
+        }).catch((e) =>{
+            alert(e)
+        })
+
+    })
+
+  const [Company, setCompany] = React.useState();
+  const [view, setView] = React.useState('month');
   const [date, setDate] = React.useState(displayDate);
   const [locale, setLocale] = React.useState(locales[0]);
   const [timezone, setTimezone] = React.useState('Etc/UTC');
-  const [orientation, setOrientation] = React.useState('horizontal');
+  const [orientation, setOrientation] = React.useState('vertical');
   const [data, setData] = React.useState(sampleDataWithCustomSchema);
   const handleViewChange = React.useCallback(event => {
     setView(event.value);
@@ -64,45 +79,52 @@ const Planner = () => {
       TaskID: guid()
     }))));
   }, [setData]);
-  return <Container>
-        <Container className="example-config">
-          <div className="row">
-            <div className="col">
+
+
+  
+  return <Container style={{marginTop : '5%',display : 'block',width : '100%',justifyContent : 'center'}}>
+        {/* <Container className="example-config"> */}
+          {/* <div className="row"> */}
+            {/* <div className="col">
               <h5>Orientation:</h5>
               <input type="radio" name="orientation" id="horizontal" data-orientation="horizontal" className="k-radio k-radio-md" checked={orientation === 'horizontal'} onChange={handleOrientationChange} />
               <label className="k-radio-label" htmlFor="horizontal">Horizontal</label>
               <br />
               <input type="radio" name="orientation" id="vertical" data-orientation="vertical" className="k-radio k-radio-md" checked={orientation === 'vertical'} onChange={handleOrientationChange} />
               <label className="k-radio-label" htmlFor="vertical">Vertical</label>
-            </div>
-          </div>
-        </Container>
+            </div> */}
+          {/* </div> */}
+        {/* </Container> */}
         <LocalizationProvider language={locale.language}>
           <IntlProvider locale={locale.locale}>
-            <Scheduler data={data} onDataChange={handleDataChange} view={view} onViewChange={handleViewChange} date={date} onDateChange={handleDateChange} editable={true} timezone={timezone} modelFields={customModelFields} group={{
-          resources: ['Rooms', 'Persons'],
-          orientation
-        }} resources={[{
-          name: 'Rooms',
-          data: [{
-            text: 'gfgsg',
-            value: 1
+            <Scheduler data={data} onDataChange={handleDataChange} view={view} onViewChange={handleViewChange} date={date} onDateChange={handleDateChange} editable={true} 
+            timezone={timezone} 
+            modelFields={customModelFields} 
+            group={{
+              resources: ['Company', 'Persons'], 
+              orientation
+            }} 
+            resources={[{
+                name: 'Company',
+                data: [{
+                text: 'Room 12',
+                value: 1
+            }, {
+                text: 'Meeting Room 201',
+                value: 2,
+                color: '#FF7272'
+            }, {
+                text: 'Meeting Room 201',
+                value: 2,
+                color: '#FF7272'
+            }],
+            field: 'RoomID',
+            valueField: 'value',
+            textField: 'text',
+            colorField: 'color'
           }, {
-            text: 'Meeting Room 201',
-            value: 2,
-            color: '#FF7272'
-          }, {
-            text: 'Meeting Room 201',
-            value: 2,
-            color: '#FF7272'
-          }],
-          field: 'RoomID',
-          valueField: 'value',
-          textField: 'text',
-          colorField: 'color'
-        }, {
-          name: 'Persons',
-          data: [{
+            name: 'Persons',
+            data: [{
             text: 'Peter',
             value: 1,
             color: '#5392E4'
