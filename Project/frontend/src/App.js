@@ -12,7 +12,7 @@ import CustomerList from './pages/customer/CustomerList';
 import EditUsers from './pages/main/EditUsers';
 import Home from './pages/main/Home';
 import Login from './pages/main/Login';
-import Planner from './pages/main/Planner';
+import Planner from './pages/calender/Planner';
 import RegistrationForm from "./pages/main/RegistrationForm";
 import UserList from './pages/main/UserList';
 
