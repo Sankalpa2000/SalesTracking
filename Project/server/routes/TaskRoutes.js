@@ -15,25 +15,42 @@ router.route("/").get(async (req,res) => {
 //Insert Data
 router.route("/Add").post(async(req,res) => {
     const { 
-        TaskID ,
-        UserID ,
-        Company,
-        Title ,
-        Description , 
-        Start,
-        End,
-        isAllDay
+        UserName,
+        UserEPFNO,
+        UserEmail,
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CompanyName,
+        CompanyLocation,
+        CompanyID,
+        SubCompanyName,
+        SubCompanyLocation,
+        SubCompanyID,
+        Title,
+        Date,
+        STime,
+        ETime,
+        Description,
      } = req.body;
-    console.log(TaskID);
     const newTask = new Task({
-        TaskID ,
-        UserID ,
-        Company,
-        Title ,
-        Description , 
-        Start,
-        End,
-        isAllDay
+        UserName,
+        UserEPFNO,
+        UserEmail,
+        CustomerName,
+        CustomerEmail,
+        CustomerPhone,
+        CompanyName,
+        CompanyLocation,
+        CompanyID,
+        SubCompanyName,
+        SubCompanyLocation,
+        SubCompanyID,
+        Title,
+        Date,
+        STime,
+        ETime,
+        Description,
     })
     console.log(newTask);
     await newTask.save().then(() => {
