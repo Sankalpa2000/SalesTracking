@@ -5,7 +5,7 @@ const Task = require('../models/Task.js');
 //Read All
 router.route("/").get(async (req,res) => {
     await Task.find().then((data) => {
-        res.status(200).send({status :"Data Recieved" ,Task : data});
+        res.status(200).send({status :"Data Recieved" ,data : data});
     }).catch((err) => {
         res.status(400).send({status:err});
     })

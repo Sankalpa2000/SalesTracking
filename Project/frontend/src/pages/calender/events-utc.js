@@ -1,3 +1,4 @@
+// import baseData from './CalenderData'
 import React, { useEffect, useState } from "react";
 import axios from "axios"
 var setTask;
@@ -9,6 +10,9 @@ var Task = 'Hi';
           alert(e)
       })
 
+// export function setData() {
+  
+// }
 
 const baseData = [{
 
@@ -76,12 +80,12 @@ const baseData = [{
     recurrenceRule: dataItem.RecurrenceRule,
     recurrenceId: dataItem.RecurrenceID,
     recurrenceExceptions: dataItem.RecurrenceException,
-    roomId: randomInt(1, 2),
-    personId: randomInt(1, 2)
+    
+    
   }
   )
   );
-  console.log(sampleDataWithResources);
+  // console.log(sampleDataWithResources);
   export const sampleDataWithCustomSchema = baseData.map(dataItem => ({
     ...dataItem,
     Start: parseAdjust(dataItem.Start),

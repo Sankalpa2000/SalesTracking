@@ -22,10 +22,23 @@ import '@progress/kendo-date-math/tz/America/Los_Angeles';
 // import esMessages from './es.json';
 import { sampleDataWithCustomSchema, displayDate, customModelFields } from './events-utc';
 import Container from 'react-bootstrap/esm/Container';
+import axios from 'axios';
 load(likelySubtags, currencyData, weekData, numbers, currencies, caGregorian, dateFields, timeZoneNames);
 // loadMessages(esMessages, 'es-ES');
 const Planner = () => {
 
+  const [Company ,setCompany] = React.useState();
+  React.useEffect(() => {
+        
+    axios.get("http://localhost:8080/Company/").then((res) =>{
+            setCompany(res.data.Company);
+            // console.log(Company);
+        }).catch((e) =>{
+            alert(e)
+        })
+        
+
+    }, [])
 
   const timezones = React.useMemo(() => timezoneNames(), []);
   const locales = [{
@@ -98,9 +111,9 @@ colorField: 'color'
                     Search By Company :<br></br>
                 <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
                             <option value = {search}  selected>Select Main Company</option>
-                        {/* {Company.map((e,i) =>(
+                        {Company.map((e,i) =>(
                             <option key={i} value={e.Name}>{e.Name}</option>
-                        ))} */}
+                        ))}
                     
                 </Form.Select>
             </div>
