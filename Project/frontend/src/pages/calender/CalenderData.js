@@ -23,7 +23,7 @@ function CalenderData() {
         useEffect(() =>{
             // e.preventdefault();
         axios.get("http://localhost:8080/Task/").then((res) =>{
-                setData(res.data)
+                setData(res.data.TaskModel)
                 console.log(data);
             }).catch((e) =>{
                 alert(e)
@@ -41,7 +41,7 @@ function CalenderData() {
             </tr>
         </thead>
         <tbody>
-             {/* {
+             {
                 data.map((e,i) =>(
                     <tr key={i} style={{textAlign : 'center',fontWeight : '400'}}>
                     <td>{i+1}</td>
@@ -50,7 +50,7 @@ function CalenderData() {
                    
                    
                 </tr> 
-             ))}   */}
+             ))}  
     
         </tbody>
         </Table>         
