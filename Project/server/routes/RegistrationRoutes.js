@@ -4,7 +4,7 @@ const Registration = require('../models/Registration');
 //Read All
 router.route("/").get(async (req,res) => {
     await Registration.find().then((data) => {
-        res.status(200).send({status :"Data Recieved" ,data : data});
+        res.status(200).send({status :"Data Recieved" ,Registration : data});
     }).catch((err) => {
         res.status(400).send({status:err});
     })
