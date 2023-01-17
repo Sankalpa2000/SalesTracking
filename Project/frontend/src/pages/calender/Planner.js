@@ -30,9 +30,9 @@ const Planner = () => {
   const [Company ,setCompany] = React.useState();
   React.useEffect(() => {
         
-    axios.get("http://localhost:8080/Company/").then((res) =>{
-            setCompany(res.data.Company);
-            // console.log(Company);
+    axios.get("http://localhost:8080/SubCompany/").then((res) =>{
+            setCompany(res.data.SubCompany);
+            console.log(Company);
         }).catch((e) =>{
             alert(e)
         })
@@ -44,15 +44,12 @@ const Planner = () => {
   const locales = [{
     language: 'en-US',
     locale: 'en'
-  }, {
-    language: 'es-ES',
-    locale: 'es'
   }];
   const [view, setView] = React.useState('month');
   const [date, setDate] = React.useState(displayDate);
   const [locale, setLocale] = React.useState(locales[0]);
   const [timezone, setTimezone] = React.useState('Etc/UTC');
-  const [orientation, setOrientation] = React.useState('horizontal');
+  const [orientation, setOrientation] = React.useState('vertical');
   const [data, setData] = React.useState(sampleDataWithCustomSchema);
   const [search , setSearch] = React.useState("");
  
@@ -85,14 +82,11 @@ const Planner = () => {
     { 
       name: 'Company',
       data: [{
-          text: 'Hi',
+        
+          //text: Company.SubName,
           value: 1,
           color:'#1e1e1e1e'
-        },{
-          text: 'Bye',
-          value: 1,
-          color:'#1e1e1e1e'
-          }], 
+        }], 
 field: 'RoomID',
 valueField: 'value',
 textField: 'text',
@@ -110,7 +104,7 @@ colorField: 'color'
               <label className="k-radio-label" htmlFor="vertical">Vertical</label>
             </div>
             <Form>
-            <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginTop:20,alignItems:'center'}}>
+            {/* <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginTop:20,alignItems:'center'}}>
                     Search By Company :<br></br>
                 <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
                             <option value = {search}  selected>Select Main Company</option>
@@ -119,7 +113,7 @@ colorField: 'color'
                         ))}
                     
                 </Form.Select>
-            </div>
+            </div> */}
             </Form>
           </div>
         </Container>
@@ -132,7 +126,6 @@ colorField: 'color'
             editable={true} 
             timezone={timezone} 
             modelFields={customModelFields}
-            group={{orientation}}
             resources={resources}>
               <TimelineView />
               <DayView />
