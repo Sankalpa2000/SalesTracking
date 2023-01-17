@@ -16,31 +16,23 @@ router.route("/").get(async (req,res) => {
 router.route("/Add").post(async(req,res) => {
     const { 
         TaskID ,
-        OwnerID ,
+        UserID ,
+        Company,
         Title ,
         Description , 
-        StartTimezone,
         Start,
         End,
-        EndTimezone,
-        RecurrenceRule,
-        RecurrenceID,
-        RecurrenceException,
         isAllDay
      } = req.body;
     console.log(TaskID);
     const newTask = new Task({
         TaskID ,
-        OwnerID ,
+        UserID ,
+        Company,
         Title ,
         Description , 
         Start,
-        StartTimezone,
         End,
-        EndTimezone,
-        RecurrenceRule,
-        RecurrenceID,
-        RecurrenceException,
         isAllDay
     })
     console.log(newTask);

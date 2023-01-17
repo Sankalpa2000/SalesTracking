@@ -7,37 +7,27 @@ var TaskModel = new mongoose.Schema({
         unique:true,
         require:true
     },
-    OwnerID: {
+    UserID: {
         type:Number,
+        require:true
+    },
+    Company: {
+        type:String,
         require:true
     },
     Title: {
         type:String,
-
+        require:true
+        
     },
     Description:{
         type:String,
 
     },
-    StartTimezone: {
-        type:Date
-    },
     Start: {
         type:Date
     },
     End: {
-        type:Date
-    },
-    EndTimezone:{
-        type:Date
-    },
-    RecurrenceRule: {
-        type:String
-    },
-    RecurrenceID: {
-        type:String
-    },
-    RecurrenceException: {
         type:Date
     },
     isAllDay: {
