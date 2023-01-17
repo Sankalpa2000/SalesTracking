@@ -1,48 +1,74 @@
 const mongoose = require('mongoose') 
 
 var TaskModel = new mongoose.Schema({
-    TaskID:{
-        type:Number,
-        index:true,
-        unique:true,
-        require:true
-    },
-    OwnerID: {
-        type:Number,
-        require:true
-    },
-    Title: {
+    
+    
+    UserName:{
         type:String,
-
+        require:true
     },
+    UserEPFNO:{
+        type:Number,
+        require:true
+    },
+    UserEmail:{
+        type:String,
+        require:true
+    },
+    CustomerName:{
+        type:String,
+        require:true
+    },
+    CustomerEmail:{
+        type:String,
+        require:true
+    },
+    CustomerPhone:{
+        type:String,
+        require:true
+    },
+    CompanyName:{
+        type:String,
+        require:true
+    },
+    CompanyLocation:{
+        type:String,
+        require:true
+    },
+    CompanyID:{
+        type:String,
+        require:true
+    },
+    SubCompanyName:{
+        type:String,
+        require:true
+    },
+    SubCompanyLocation:{
+        type:String,
+        require:true
+    },
+    SubCompanyID:{
+        type:String,
+        require:true
+    },
+    Title:{
+        type:String,
+        require:true
+    },
+    Date:{
+        type:String,
+        require:true
+    },
+    STime:{
+        type:String,
+        require:true
+    },
+    ETime:{
+        type:String,
+    },    
     Description:{
         type:String,
-
     },
-    StartTimezone: {
-        type:Date
-    },
-    Start: {
-        type:Date
-    },
-    End: {
-        type:Date
-    },
-    EndTimezone:{
-        type:Date
-    },
-    RecurrenceRule: {
-        type:String
-    },
-    RecurrenceID: {
-        type:String
-    },
-    RecurrenceException: {
-        type:Date
-    },
-    isAllDay: {
-        type:Boolean
-    }
 
 });
 
