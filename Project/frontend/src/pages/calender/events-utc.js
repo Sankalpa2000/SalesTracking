@@ -3,6 +3,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios"
 var setTask;
 var Task = 'Hi';
+  // axios.get("http://localhost:8080/Task/").then((res) =>{
+  //         setTask = res.data.TaskModel
+  //         console.log(setTask);
+  //     }).catch((e) =>{
+  //         alert(e)
+  //     })
 
 // export function setData() {
   
@@ -10,7 +16,7 @@ var Task = 'Hi';
 
 const baseData = [{
 
-    "TaskID": Task,
+    "TaskID": 1,
     "OwnerID": 2,
     "Title": "Bowling tournament",
     "Description": Task,
