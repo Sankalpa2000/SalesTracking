@@ -10,11 +10,10 @@ import { Card, CButton, CCard, CCardBody, CCardText, CCardTitle, CCol, CModal, C
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
-function TaskList() {
+function TaskCompleted() {
     var dateMDY;
     const [search,setSearch] = useState("");
     const [loading,setLoading] = useState(true);
-    const [Users,setUsers] = useState([]);
     const [Task,setTask] = useState([]);
     const navigate = useNavigate();
     const [visibleXL, setVisibleXL] = useState(false)
@@ -22,7 +21,7 @@ function TaskList() {
     
     useEffect(() => {
         
-        axios.get("http://localhost:8080/Task/").then((res) =>{
+        axios.get("http://localhost:8080/TaskCompleted/").then((res) =>{
             setTask(res.data.data);
             console.log(Task);
             
@@ -38,9 +37,6 @@ function TaskList() {
     const MoreDetails = (e) => {
        navigate('/TaskDetails',{state : {props : e}})
     }
-    const Completed = (e) => {
-       navigate('/TaskDetails',{state : {props : e}})
-    }
     
     const Deletetask = (e) => {
         // e.preventDefault();
@@ -53,23 +49,26 @@ function TaskList() {
             })
         }
     }
-    useEffect(() => {
-        axios.get("http://localhost:8080/User/").then((res) =>{
-                setUsers(res.data.Registration);
-            }).catch((err) =>{
-              alert(err)
+    const Completed = (e) => {
+        // e.preventDefault();
+        if(window.confirm("Confirm Task Completion ?") === true){
+
+            
+            const id = e._id;
+            console.log(id);
+            axios.delete(`http://localhost:8080/Task/Delete/${id}`).then((res)=>{
+                alert(res.data.state)
+                navigate(0)
             })
-        }, [])
+        }
+    }
 
     return (
         <>
     <Container style={{marginTop : '5%',display : 'block',width : '100%',justifyContent : 'center' }}>
-        <h1>Task  :</h1>
+        <h1>Completed Task  :</h1>
         <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'2%'}}>
-            <a href='/InsertTask'>
-                
-            <Button variant="primary" style={{fontWeight : 'bold', marginRight:'10px'}}>+ Add</Button>
-            </a>
+            
             <Form className="d-flex" style={{width : '30%'}}>
 
             <Form.Control
@@ -83,16 +82,6 @@ function TaskList() {
             <Button >Search</Button>
           </Form>
         </div>
-            <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'20px',alignItems:'center'}}>
-                    Search By User :<br></br>
-                <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
-                            <option value = ''  selected>Select User</option>
-                        {Users.map((e,i) =>(
-                            <option key={i} value={e.Name}>{e.Name}</option>
-                        ))}
-                    
-                </Form.Select>
-            </div>
         
         <CRow>
          {
@@ -124,12 +113,12 @@ function TaskList() {
                     </CCardText>
                     <CCardText>
                         <b>
-                             Description :</b>{e.Description.substring(0, 100)}
+                             Description :</b>{e.Description.substring(0, 200)}
                     
                     </CCardText>
-                    <CButton ovariant="outline-primary" style={{marginRight:'20px'}} onClick={() => {MoreDetails(e)}}>More Details</CButton>
-                    <CButton class="btn btn-warning" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</CButton>
-                    <CButton class="btn btn-success" style={{marginRight:'20px'}} onClick={() => {Completed(e)}}>Completed</CButton>
+                    <CButton ovariant="outline-primary" style={{marginRight:'20px'}} onClick={() => {MoreDetails(e)}}>Details</CButton>
+                    {/* <CButton class="btn btn-warning" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</CButton> */}
+                    {/* <CButton class="btn btn-success" style={{marginRight:'20px'}} onClick={() => {Completed(e)}}>Completed</CButton> */}
                     <CButton class="btn btn-danger" style={{marginRight:'20px'}} onClick={() => {Deletetask(e)}}>Delete</CButton>
                 </CCardBody>
                 </CCard><br></br>
@@ -141,4 +130,4 @@ function TaskList() {
   )
 }
 
-export default TaskList
+export default TaskCompleted

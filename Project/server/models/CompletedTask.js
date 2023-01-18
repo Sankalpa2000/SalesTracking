@@ -1,6 +1,6 @@
 const mongoose = require('mongoose') 
 
-var TaskModel = new mongoose.Schema({
+var CompletedTask = new mongoose.Schema({
     
     
     UserName:{
@@ -72,6 +72,6 @@ var TaskModel = new mongoose.Schema({
 
 });
 
-const Task = mongoose.model("TaskModel" ,TaskModel)
+const TaskDone = mongoose.model("CompletedTask" ,CompletedTask)
 //Export the model
-module.exports = Task;
+module.exports = TaskDone;
