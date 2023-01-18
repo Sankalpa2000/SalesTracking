@@ -60,11 +60,11 @@ function CustomerInsert() {
 
   return (
     <>
-        <Container style={{marginTop : '5%',  marginBottom : '10%',display : 'block',width : '80%',justifyContent : 'center'}}>
+        <Container style={{marginTop : '5%',  display : 'block',width : '80%',justifyContent : 'center'}}>
             <h4 style={{align:'center'}}>
                 Customer Registration Form : 
             </h4>
-            <Form onSubmit= {SubmitData}>
+            <Form onSubmit= {SubmitData} >
                 <Form.Group className='form-floating mb-3'>
                     <Form.Control type='text'  onChange={(e) => {setName(e.target.value)}} required/>
                     <Form.Label>Name :</Form.Label>
@@ -100,7 +100,7 @@ function CustomerInsert() {
                     </Form.Select>
                 </Form.Group>
                 
-                <Button variant="primary" type="submit" style={{width:'20%'}}>Register</Button>
+                <Button variant="primary" type="submit" style={{width:'20%',marginBottom:'5%'}}>Register</Button>
                 {/* <ToastContainer position="top-center" autoClose={8080}/> */}
             </Form>
         </Container>

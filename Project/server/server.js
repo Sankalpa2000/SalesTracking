@@ -39,3 +39,6 @@ app.use("/SubCompany" , SubCompany);
 
 const Task = require('./routes/TaskRoutes.js')
 app.use("/Task" , Task); 
+
+const TaskCompleted = require('./routes/CompletedTaskRoutes.js')
+app.use("/CompletedTask" , TaskCompleted); 

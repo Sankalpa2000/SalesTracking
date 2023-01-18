@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const Task = require('../models/Task.js');
+const TaskDone = require('../models/CompletedTask');
 
 
 //Read All
 router.route("/").get(async (req,res) => {
-    await Task.find().then((data) => {
+    await TaskDone.find().then((data) => {
         res.status(200).send({status :"Data Recieved" ,data : data});
     }).catch((err) => {
         res.status(400).send({status:err});
@@ -33,7 +33,7 @@ router.route("/Add").post(async(req,res) => {
         ETime,
         Description,
      } = req.body;
-    const newTask = new Task({
+    const newTask = new TaskDone({
         UserName,
         UserEPFNO,
         UserEmail,
@@ -104,7 +104,7 @@ router.route("/Update").put(async(req,res) => {
         Description,
     }
     console.log(data);
-    await Task.findByIdAndUpdate(id,data).then(() => {
+    await TaskDone.findByIdAndUpdate(id,data).then(() => {
         res.status(200).send({state:"Updated" , data:data})
     }).catch((err) => {
         res.state(400).send({state:err});
@@ -113,7 +113,7 @@ router.route("/Update").put(async(req,res) => {
 router.route("/Delete/:id").delete(async (req,res) => {
     const id = req.params.id;
     console.log(id);
-    Task.findByIdAndDelete(id).then(() => {
+    TaskDone.findByIdAndDelete(id).then(() => {
         res.status(200).send({state:"Deleted Successfully"});
     }).catch((err) => {
         res.status(100).send({status : err})

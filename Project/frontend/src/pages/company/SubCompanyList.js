@@ -123,7 +123,7 @@ function SubCompanyList() {
                 SubCompany.filter((element) => {
                     if(search === ""){
                         return element
-                    }else if ((element.SubName.toLowerCase()).includes(search.toLowerCase())){
+                    }else if ((element.MainCompanyName.toLowerCase()).includes(search.toLowerCase())){
                         return element
                     }
                 }).map((e,i) =>(

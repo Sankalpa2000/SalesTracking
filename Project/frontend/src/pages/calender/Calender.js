@@ -105,7 +105,7 @@ handleDateSelect = (selectInfo) => {
     let title = prompt('Please enter a new title for your event')
     let name = prompt('Please enter a new title for your Name')
     let calendarApi = selectInfo.view.calendar
-    console.log(selectInfo)
+    // console.log(selectInfo)
 
     calendarApi.unselect() // clear date selection
 

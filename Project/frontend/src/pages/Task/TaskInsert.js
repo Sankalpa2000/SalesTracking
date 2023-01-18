@@ -62,6 +62,7 @@ function TaskInsert() {
         console.log(Data);
         axios.post(`http://localhost:8080/Task/Add`,Data).then((res) => {
             alert("Data Added");
+            navigate(-1)
         }).catch(err => {
             alert(err)
             
@@ -146,7 +147,7 @@ function TaskInsert() {
                     <Form.Label>Task Title:</Form.Label>
                 </Form.Group>
                 <Form.Group className='form-floating mb-3' style={{width:'40%'}}>
-                    <Form.Control type="date" format='yyyy-mm-dd' placeholder="Date" value={Date} onChange={(e) => {setDate(e.target.value)}}  required />
+                    <Form.Control type="date"  placeholder="Date" value={Date} onChange={(e) => {setDate(e.target.value)}}  required />
                     <Form.Label>Date:</Form.Label>
                 </Form.Group>
                 <Form.Group className='form-floating mb-3' style={{width:'40%'}}>

@@ -25,6 +25,7 @@ import TaskInsert from './pages/Task/TaskInsert';
 import TaskList from './pages/Task/TasklList';
 import TaskDetails from './pages/Task/TaskDetails';
 import TaskEdit from './pages/Task/TaskEdit';
+import TaskCompleted from './pages/Task/TaskCompleted';
 Modal.setAppElement('#root')
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
           <Route exact path='/Login' element={<Login/>}/>
           <Route exact path='/Register' element={<RegistrationForm/>}/>
           <Route exact path='/UserList' element={<UserList/>}/>
-          {/* <Route exact path='/Planner' element={<Planner/>}/> */}
+          <Route exact path='/Planner' element={<Calender/>}/>
           <Route exact path='/Company' element={<Companies/>}/>
           {/* <Route exact path='/ViewSubCompanies' element={<SubCompanyList/>}/> */}
           <Route exact path='/AddCompany' element={<CompanyInsert/>}/>
@@ -51,6 +52,7 @@ function App() {
           <Route exact path='/InsertTask' element={<TaskInsert/>}/>
           <Route exact path='/TaskDetails' element={<TaskDetails/>}/>
           <Route exact path='/TaskEdit' element={<TaskEdit/>}/>
+          <Route exact path='/ViewCompleted' element={<TaskCompleted/>}/>
           
 
         </Routes>
