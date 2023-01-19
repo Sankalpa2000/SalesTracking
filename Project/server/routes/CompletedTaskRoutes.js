@@ -15,6 +15,7 @@ router.route("/").get(async (req,res) => {
 //Insert Data
 router.route("/Add").post(async(req,res) => {
     const {
+        Remark,
         TaskID,
         CompletedAt, 
         UserName,
@@ -36,6 +37,7 @@ router.route("/Add").post(async(req,res) => {
         Description,
      } = req.body;
     const newTask = new TaskDone({
+        Remark,
         TaskID,
         CompletedAt,
         UserName,
@@ -56,7 +58,7 @@ router.route("/Add").post(async(req,res) => {
         ETime,
         Description,
     })
-    console.log(UserEPFNO);
+    // console.log(UserEPFNO);
     await newTask.save().then(() => {
         res.status(200).send({status:"New Task Added"})
     }).catch((err) => {
@@ -69,6 +71,7 @@ router.route("/Update").put(async(req,res) => {
     const id = req.body.id;
     console.log(id);
     const { 
+        Remark,
         UserName,
         UserEPFNO,
         UserEmail,
@@ -89,6 +92,7 @@ router.route("/Update").put(async(req,res) => {
      } = req.body;
 
     const data = {
+        Remark,
         UserName,
         UserEPFNO,
         UserEmail,

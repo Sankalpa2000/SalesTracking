@@ -24,7 +24,7 @@ function TaskList() {
         
         axios.get("http://localhost:8080/Task/").then((res) =>{
             setTask(res.data.data);
-            console.log(Task);
+            // console.log(Task);
             
         }).catch((e) =>{
             alert(e)
@@ -46,7 +46,7 @@ function TaskList() {
         // e.preventDefault();
         if(window.confirm("Confirm Delete Task ?") === true){
             const id = e._id;
-            console.log(id);
+            // console.log(id);
             axios.delete(`http://localhost:8080/Task/Delete/${id}`).then((res)=>{
                 alert(res.data.state)
                 navigate(0)
@@ -131,9 +131,9 @@ function TaskList() {
                              Description :</b>{e.Description.substring(0, 100)}
                     
                     </CCardText>
-                    <CButton ovariant="outline-primary" style={{marginRight:'20px'}} onClick={() => {MoreDetails(e)}}>More Details</CButton>
+                    <CButton ovariant="info" style={{marginRight:'20px'}} onClick={() => {MoreDetails(e)}}>More Details</CButton>
                     <CButton class="btn btn-warning" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</CButton>
-                    <CButton class="btn btn-success" style={{marginRight:'20px'}} onClick={() => {Completed(e)}}>Completed</CButton>
+                    {/* <CButton class="btn btn-success" style={{marginRight:'20px'}} onClick={() => {Completed(e)}}>Completed</CButton> */}
                     <CButton class="btn btn-danger" style={{marginRight:'20px'}} onClick={() => {Deletetask(e)}}>Delete</CButton>
                 </CCardBody>
                 </CCard><br></br>

@@ -96,8 +96,8 @@ function UserList() {
                     <td>{e.Email}</td>
                     {/* <td>{e.Password}</td> */}
                     <td>
-                        <Button variant="outline-primary" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</Button>     
-                        <Button  variant="outline-danger" onClick={() => deleteUser(e)}>Delete</Button>
+                        <Button variant="primary" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</Button>     
+                        <Button  variant="danger" onClick={() => deleteUser(e)}>Delete</Button>
                     </td>
                     
                 </tr>

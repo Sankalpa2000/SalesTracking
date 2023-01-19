@@ -30,6 +30,7 @@ function TaskCompleted() {
     const [UserEmail,setUserEmail] = useState();
     const [SubCompanyID,setSubCompanyID] = useState();
     const [CompletedAt,setCompletedAt] = useState();
+    const [Remark,setRemark] = useState();
     const [SubCompanyName,setSubCompanyName] = useState();
     const [SubCompanyLocation,setSubCompanyLocation] = useState();
     
@@ -59,7 +60,7 @@ function TaskCompleted() {
         
         }
         
-        console.log(data);
+        // console.log(data);
      
   },[])
     
@@ -67,8 +68,9 @@ function TaskCompleted() {
         e.preventDefault();
         
         
-        console.log(Date);
+        // console.log(Date);
         const Data ={
+            Remark,
             CompletedAt,
             TaskID,
             UserName,
@@ -89,12 +91,12 @@ function TaskCompleted() {
             ETime,
             Description,
           }
-          console.log(UserEPFNO);
+        //   console.log(UserEPFNO);
           axios.post(`http://localhost:8080/CompletedTask/Add`,Data).then((res) => {
             <Alert severity="warning">This is a warning alert — check it out!</Alert>
               if(window.confirm("Confirm Delete Task ?") === true){
                 const id = e._id;
-                console.log(id);
+                // console.log(id);
                 axios.delete(`http://localhost:8080/Task/Delete/${TaskID}`).then((res)=>{
                     alert(res.data.state)
                     navigate(-1)
@@ -117,11 +119,14 @@ function TaskCompleted() {
       </CModalHeader>
       <CModalBody>
             <CCardText>
-                Completed Date :
                 <Form onSubmit={SubmitData}>
                 <Form.Group className='form-floating mb-3' style={{width:'100%' ,marginTop:'10px'}}>
                     <Form.Control type="date"  placeholder="Date" value={CompletedAt} onChange={(e) => {setCompletedAt(e.target.value)}}  required />
-                    <Form.Label>Date:</Form.Label>
+                    <Form.Label>Date :</Form.Label>
+                </Form.Group>
+                <Form.Group className='form-floating mb-3' style={{width:'100%' ,marginTop:'10px'}}>
+                    <Form.Control type="text" value={Remark} onChange={(e) => {setRemark(e.target.value)}} />
+                    <Form.Label>Remark :</Form.Label>
                     <CButton class="btn btn-success" style={{marginRight:'20px',marginTop:'20px'}} type='submit'>Complete</CButton>
                 </Form.Group>
                 </Form>

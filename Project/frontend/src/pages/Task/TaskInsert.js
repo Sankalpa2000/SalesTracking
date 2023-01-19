@@ -39,7 +39,7 @@ function TaskInsert() {
       const SubCompanyLocation =  (GroupSubCompany.split("-")[1])
       const SubCompanyID =  (GroupSubCompany.split("-")[2])
       const CompanyID =  (GroupSubCompany.split("-")[3])
-      console.log(Date);
+    //   console.log(Date);
       const Data ={
             UserName,
             UserEPFNO,
@@ -59,7 +59,7 @@ function TaskInsert() {
             ETime,
             Description,
         }
-        console.log(Data);
+        // console.log(Data);
         axios.post(`http://localhost:8080/Task/Add`,Data).then((res) => {
             alert("Data Added");
             navigate(-1)

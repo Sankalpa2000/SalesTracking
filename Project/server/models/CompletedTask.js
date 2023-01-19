@@ -3,6 +3,9 @@ const mongoose = require('mongoose')
 var CompletedTask = new mongoose.Schema({
     
     
+    Remark:{
+        type:String,
+    },
     TaskID:{
         type:String,
         require:true

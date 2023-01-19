@@ -37,7 +37,7 @@ function TaskEdit() {
     const Location = useLocation();
     const data = Location.state.props
 
-    console.log(data);
+    // console.log(data);
 
     useEffect(() => {
         try{
@@ -96,7 +96,18 @@ function TaskEdit() {
             }, [])
             const SubmitData = (e) =>{
                 e.preventDefault();
-                
+                // const UserName = (UserDetails.split("-")[0]);
+                // const UserEPFNO = (UserDetails.split("-")[1]);
+                // const UserEmail = (UserDetails.split("-")[2]);
+                // const CustomerName =  (CustomerDetails.split("-")[0])
+                // const CustomerEmail =  (CustomerDetails.split("-")[1])
+                // const CustomerPhone =  (CustomerDetails.split("-")[2])
+                // const CompanyName =  (GroupCompany.split("-")[0])
+                // const CompanyLocation =  (GroupCompany.split("-")[1])
+                // const SubCompanyName =  (GroupSubCompany.split("-")[0])
+                // const SubCompanyLocation =  (GroupSubCompany.split("-")[1])
+                // const SubCompanyID =  (GroupSubCompany.split("-")[2])
+                // const CompanyID =  (GroupSubCompany.split("-")[3])
                 const Data ={
                     id,
                     UserName,
@@ -117,7 +128,8 @@ function TaskEdit() {
                     ETime,
                     Description,
                 }
-                console.log(Data);
+                // console.log(UserName);
+                // console.log(Data);
                 axios.put("http://localhost:8080/Task/Update",Data).then((res) => {
                     alert("Data Added");
                     navigate(-1)
@@ -135,10 +147,10 @@ function TaskEdit() {
                 Update Task : {Title}
             </h4>
             <Form onSubmit={SubmitData}>
-                <Form.Group className= 'mb-3'>
+                <Form.Group className= 'mb-3' >
                 <Form.Label>User Name :</Form.Label>
-                <Form.Select onChange={(e) => {setUserDetails(e.target.value)}}  required >
-                <option value = {`${UserName}-${UserEPFNO}-${UserEmail}`}  selected>{UserName}</option>
+                <Form.Select onChange={(e) => {setUserDetails(e.target.value)}} disabled  required >
+                <option value={UserName}  selected>{UserName}</option>
                 {User.map((e,i) =>(
                     <option key={i} value={`${e.Name}-${e.EPFNO}-${e.Email}`} >{e.Name}</option>
                         ))}
@@ -146,8 +158,8 @@ function TaskEdit() {
                 </Form.Group>
                 <Form.Group className= 'mb-3'>
                 <Form.Label>Customer Name :</Form.Label>
-                <Form.Select onChange={(e) => {setCustomerDetails(e.target.value)}}  required >
-                <option value = {`${CustomerName}-${CustomerEmail}-${CustomerPhone}`}  selected>{CustomerName}</option>
+                <Form.Select onChange={(e) => {setCustomerDetails(e.target.value)}} disabled  required >
+                <option value='select'   selected>{CustomerName}</option>
                 {Customer.map((e,i) =>(
                     <option key={i} value={`${e.Name}-${e.Email}-${e.Phone}`}>{e.Name}</option>
                         ))}
@@ -155,8 +167,8 @@ function TaskEdit() {
                 </Form.Group>
                 <Form.Group className= 'mb-3'>
                 <Form.Label>Group Company :</Form.Label>
-                <Form.Select onChange={(e) => {setGroupCompany(e.target.value)}}  required >
-                <option  value={`${CompanyName}-${CompanyLocation}`}  selected>{CompanyName}-{CompanyLocation}</option>
+                <Form.Select onChange={(e) => {setGroupCompany(e.target.value)}} disabled required >
+                <option  value='select' selected>{CompanyName}-{CompanyLocation}</option>
                 {Company.map((e,i) =>(
                     <option key={i} value={`${e.Name}-${e.Location}`}>{e.Name}-{e.Location}</option>
                         ))}
@@ -164,15 +176,15 @@ function TaskEdit() {
                 </Form.Group>
                 <Form.Group className= 'mb-3' >
                 <Form.Label>Sub Company :</Form.Label>
-                <Form.Select onChange={(e) => {setGroupSubCompany(e.target.value)}}  required >
-                <option value={`${SubCompanyName}-${SubCompanyLocation}-${SubCompanyID}-${CompanyID}`}  selected>{SubCompanyName}-{SubCompanyLocation}</option>
+                <Form.Select onChange={(e) => {setGroupSubCompany(e.target.value)}} disabled required >
+                <option value='select' selected>{SubCompanyName}-{SubCompanyLocation}</option>
                 {SubGroup.map((e,i) =>(
                     <option key={i} value={`${e.SubName}-${e.SubLocation}-${e._id}-${e.MainCompanyID}`}>{e.SubName}-{e.SubLocation}</option>
                         ))}
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className='form-floating mb-3'>
-                    <Form.Control type='text' value={Title} onChange={(e) => {setTitle(e.target.value)}} required/>
+                    <Form.Control type='text' value={Title} onChange={(e) => {setTitle(e.target.value)}}   required/>
                     <Form.Label>Task Title:</Form.Label>
                 </Form.Group>
                 <Form.Group className='form-floating mb-3' style={{width:'40%'}}>
