@@ -41,7 +41,7 @@ function CustomerList() {
         // e.preventDefault();
         if(window.confirm("Confirm Delete Customer ?") === true){
             const id = e._id;
-            console.log(id);
+            // console.log(id);
             axios.delete(`http://localhost:8080/Customer/Delete/${id}`).then((res)=>{
                 alert(res.data.state)
                 navigate(0)

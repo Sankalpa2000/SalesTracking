@@ -83,7 +83,7 @@ export default function Companies() {
             <th>Index</th>
             <th>Name</th>
             <th>Location</th>
-            <th>Sub Companies</th>
+            {/* <th>Sub Companies</th> */}
             <th>Other</th>
             </tr>
         </thead>
@@ -101,12 +101,12 @@ export default function Companies() {
                     <td>{e.Name}</td>
                     {/* <td>{e._id}</td> */}
                     <td>{e.Location}</td>
-                    <td>
+                    {/* <td>
                         <Button  variant="btn btn-primary" style={{marginRight:'20px' }} onClick={() => ViewSub(e)}>View</Button>
                         <Button  variant="btn btn-success" onClick={() => AddSub(e)}>Add</Button>
-                    </td>
+                    </td> */}
                     <td>
-                        <Button  variant="btn btn-warning" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</Button>     
+                        <Button  variant="primary" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</Button>     
                         <Button  variant="btn btn-danger" onClick={() => deleteUser(e)}>Delete</Button>
                     </td>
                     

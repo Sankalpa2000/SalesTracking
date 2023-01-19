@@ -33,7 +33,7 @@ function TaskDetails() {
     const [SubCompanyName,setSubCompanyName] = useState();
     const [SubCompanyLocation,setSubCompanyLocation] = useState();
   const [visibleXL, setVisibleXL] = useState(true)
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     try {
@@ -62,7 +62,7 @@ function TaskDetails() {
       
       
     },[])
-    console.log(UserEPFNO);
+    // console.log(UserEPFNO);
 
   const TaskCompleted = () => {
     const data = {
@@ -161,7 +161,7 @@ function TaskDetails() {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July' ,'August' ,'September' , 'October', 'November' ,'December'],
     datasets: [
       {
-        label: [`${Title}`,'ass'] ,
+        label: [`${Title}`] ,
         backgroundColor: '#f87979',
         data: [60, 40, 60, 40, 30, 40, 50, 90, 10, 20,90,80],
       },
@@ -201,7 +201,7 @@ function TaskDetails() {
           </tbody>
         </Table>
         <CButton class="btn btn-success" style={{marginBottom:'10%'}} onClick={TaskCompleted}>Completed</CButton>
-        <CButton class="btn btn-warning" style={{marginRight:'20px'}}>Edit</CButton>
+        {/* <CButton class="btn btn-warning" style={{marginRight:'20px'}}>Edit</CButton> */}
       </CModalBody>
     </Container>
     </CModal>
