@@ -20,12 +20,13 @@ import CalenderData from './pages/calender/CalenderData';
 
 
 import Modal from 'react-modal';
-import Calender from './pages/calender/Calender';
+
 import TaskInsert from './pages/Task/TaskInsert';
 import TaskList from './pages/Task/TasklList';
 import TaskDetails from './pages/Task/TaskDetails';
 import TaskEdit from './pages/Task/TaskEdit';
 import TaskCompleted from './pages/Task/TaskCompleted';
+import TaskListCompleted from './pages/Task/TaskListCompleted';
 Modal.setAppElement('#root')
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
           <Route exact path='/Login' element={<Login/>}/>
           <Route exact path='/Register' element={<RegistrationForm/>}/>
           <Route exact path='/UserList' element={<UserList/>}/>
-          <Route exact path='/Planner' element={<Calender/>}/>
+          {/* <Route exact path='/Planner' element={<Calender/>}/> */}
           <Route exact path='/Company' element={<Companies/>}/>
           {/* <Route exact path='/ViewSubCompanies' element={<SubCompanyList/>}/> */}
           <Route exact path='/AddCompany' element={<CompanyInsert/>}/>
@@ -47,12 +48,13 @@ function App() {
           <Route exact path='/EditCustomer' element={<CustomerEdit/>}/>
           <Route exact path='/SubCompany' element={<SubCompanyList/>}/>
           <Route exact path='/EditSubCompany' element={<SubCompanyEdit/>}/>
-          <Route exact path='/AddTask' element={<Calender/>}/>
+          {/* <Route exact path='/AddTask' element={<Calender/>}/> */}
           <Route exact path='/TaskList' element={<TaskList/>}/>
           <Route exact path='/InsertTask' element={<TaskInsert/>}/>
           <Route exact path='/TaskDetails' element={<TaskDetails/>}/>
           <Route exact path='/TaskEdit' element={<TaskEdit/>}/>
           <Route exact path='/ViewCompleted' element={<TaskCompleted/>}/>
+          <Route exact path='/CompletedList' element={<TaskListCompleted/>}/>
           
 
         </Routes>

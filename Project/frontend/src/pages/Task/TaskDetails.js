@@ -7,23 +7,21 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import TaskCompleted from './TaskCompleted';
 
 
 function TaskDetails() {
   const Location = useLocation();
   const data = Location.state.props
   const navigate = useNavigate();
-    const [UserDetails,setUserDetails] = useState();
     const [CustomerName,setCustomerName] = useState();
     const [CustomerEmail,setCustomerEmail] = useState();
     const [CustomerPhone,setCustomerPhone] = useState();
-    const [CustomerDetails,setCustomerDetails] = useState();
-    const [GroupCompany,setGroupCompany] = useState();
     const [CompanyName,setCompanyName] = useState();
     const [CompanyLocation,setCompanyLocation] = useState();
     const [CompanyID,setCompanyID] = useState();
-    const [GroupSubCompany,setGroupSubCompany] = useState();
     const [Title,setTitle] = useState();
+    const [id,setID] = useState();
     const [Description,setDescription] = useState();
     const [Date,setDate] = useState();
     const [STime,setSTime] = useState();
@@ -31,10 +29,6 @@ function TaskDetails() {
     const [UserName,setUsersName] = useState();
     const [UserEPFNO,setUserEPFNO] = useState();
     const [UserEmail,setUserEmail] = useState();
-    const [SubGroup,setSubGroup] = useState([]);
-    const [Customer,setCustomer] = useState([]);
-    const [User,setUsers] = useState([]);
-    const [Company,setCompany] = useState([]);
     const [SubCompanyID,setSubCompanyID] = useState();
     const [SubCompanyName,setSubCompanyName] = useState();
     const [SubCompanyLocation,setSubCompanyLocation] = useState();
@@ -43,34 +37,58 @@ function TaskDetails() {
 
   useEffect(() => {
     try {
-
-            setSTime(data.STime)
-            setDate(data.Date.substring(0,10))
-            setETime(data.ETime)
-            setDescription(data.Description)
-            setUsersName(data.UserName)
-            setUserEmail(data.UserEmail)
-            setTitle(data.Title)
-            setUserEPFNO(data.UserEPFNO)
-            setCustomerName(data.CustomerName)
-            setCustomerPhone(data.CustomerPhone)
-            setCustomerEmail(data.CustomerEmail)
-            setCompanyID(data.CompanyID)
-            setCompanyName(data.CompanyName)
-            setCompanyLocation(data.CompanyLocation)
-            setSubCompanyLocation(data.SubCompanyLocation)
-            setSubCompanyName(data.SubCompanyName)
+      
+      setID(data._id)
+      setUsersName(data.UserName)
+      setUserEPFNO(data.UserEPFNO)
+      setUserEmail(data.UserEmail)
+      setCustomerName(data.CustomerName)
+      setCustomerEmail(data.CustomerEmail)
+      setCustomerPhone(data.CustomerPhone)
+      setCompanyID(data.CompanyID)
+      setCompanyName(data.CompanyName)
+      setCompanyLocation(data.CompanyLocation)
+      setSubCompanyName(data.SubCompanyName)
+      setSubCompanyLocation(data.SubCompanyLocation)
+      setSubCompanyID(data.SubCompanyID)
+      setTitle(data.Title)
+      setDate(data.Date.substring(0,10))
+      setSTime(data.STime)
+      setETime(data.ETime)
+      setDescription(data.Description)
       } catch (error) {
         
       }
-          
-     
-  },[])
+      
+      
+    },[])
+    console.log(UserEPFNO);
 
-  
+  const TaskCompleted = () => {
+    const data = {
+            id,
+            UserName,
+            UserEPFNO,
+            UserEmail,
+            CustomerName,
+            CustomerEmail,
+            CustomerPhone,
+            CompanyName,
+            CompanyLocation,
+            CompanyID,
+            SubCompanyName,
+            SubCompanyLocation,
+            SubCompanyID,
+            Title,
+            Date,
+            STime,
+            ETime,
+            Description};
+    navigate('/ViewCompleted',{state : {props : data}})
+}
   return (
     <div>
-      <CModal fullscreen visible={visibleXL} onClose={() => navigate(-1)}>
+      <CModal size='xl' visible={visibleXL} onClose={() => navigate(-1)}>
       <Container style={{marginTop : '5%', marginBottom: '10%',display : 'block',width : '80%',justifyContent : 'center'}}>
           
       <CModalHeader>
@@ -130,19 +148,22 @@ function TaskDetails() {
           <Col>
         
 
-      <CModalTitle>
-        Amount Completed :
-      </CModalTitle>
-      <ProgressBar variant="success" now={40} />
+      
+      This Month Completed :
+  
+      <ProgressBar variant="success" now={45} animated value={25} style={{marginTop:'10px'}}/>
+      <br/>
+      <br/>
+      Monthly Progress :
       <CChart
-  type="bar"
+  type="bar" 
   data={{
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July' ,'August' ,'September' , 'October', 'November' ,'December'],
     datasets: [
       {
-        label: `${Title}` ,
+        label: [`${Title}`,'ass'] ,
         backgroundColor: '#f87979',
-        data: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: [60, 40, 60, 40, 30, 40, 50, 90, 10, 20,90,80],
       },
     ],
   }}
@@ -173,11 +194,14 @@ function TaskDetails() {
               <td><b>Phone</b></td>
               <td><b>{}</b></td>
               <td><b>{CustomerPhone}</b></td>
+              {/* <td><b>{id}</b></td> */}
+
             </tr>
             
           </tbody>
         </Table>
-        <CButton class="btn btn-success" style={{marginBottom:'10%'}} >Completed</CButton>
+        <CButton class="btn btn-success" style={{marginBottom:'10%'}} onClick={TaskCompleted}>Completed</CButton>
+        <CButton class="btn btn-warning" style={{marginRight:'20px'}}>Edit</CButton>
       </CModalBody>
     </Container>
     </CModal>

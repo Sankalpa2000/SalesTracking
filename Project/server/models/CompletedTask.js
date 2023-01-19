@@ -3,6 +3,14 @@ const mongoose = require('mongoose')
 var CompletedTask = new mongoose.Schema({
     
     
+    TaskID:{
+        type:String,
+        require:true
+    },
+    CompletedAt:{
+        type:Date,
+        require:true
+    },
     UserName:{
         type:String,
         require:true
