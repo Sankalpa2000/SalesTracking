@@ -1,6 +1,4 @@
-import Button from 'react-bootstrap/Button';
 import React, { useEffect, useState } from 'react'
-import {HashLoader} from 'react-spinners';
 import Container from 'react-bootstrap/esm/Container'
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
@@ -8,123 +6,131 @@ import axios from 'axios';
 import { Card, CButton, CCard, CCardBody, CCardText, CCardTitle, CCol, CModal, CModalBody, CModalHeader, CModalTitle, CRow } from '@coreui/react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Alert } from 'bootstrap';
+
 
 
 function TaskCompleted() {
-    var dateMDY;
-    const [search,setSearch] = useState("");
-    const [loading,setLoading] = useState(true);
-    const [Task,setTask] = useState([]);
     const navigate = useNavigate();
-    const [visibleXL, setVisibleXL] = useState(false)
+    const [visibleXL, setVisibleXL] = useState(true)
+    const [CustomerName,setCustomerName] = useState();
+    const [CustomerEmail,setCustomerEmail] = useState();
+    const [CustomerPhone,setCustomerPhone] = useState();
+    const [CompanyName,setCompanyName] = useState();
+    const [CompanyLocation,setCompanyLocation] = useState();
+    const [CompanyID,setCompanyID] = useState();
+    const [Title,setTitle] = useState();
+    const [TaskID,setID] = useState();
+    const [Description,setDescription] = useState();
+    const [Date,setDate] = useState();
+    const [STime,setSTime] = useState();
+    const [ETime,setETime] = useState();
+    const [UserName,setUsersName] = useState();
+    const [UserEPFNO,setUserEPFNO] = useState();
+    const [UserEmail,setUserEmail] = useState();
+    const [SubCompanyID,setSubCompanyID] = useState();
+    const [CompletedAt,setCompletedAt] = useState();
+    const [SubCompanyName,setSubCompanyName] = useState();
+    const [SubCompanyLocation,setSubCompanyLocation] = useState();
     
-    
+    const Location = useLocation();
+    const data = Location.state.props
     useEffect(() => {
+        try {
+            setID(data.id)
+            setUsersName(data.UserName)
+            setUserEPFNO(data.UserEPFNO)
+            setUserEmail(data.UserEmail)
+            setCustomerName(data.CustomerName)
+            setCustomerEmail(data.CustomerEmail)
+            setCustomerPhone(data.CustomerPhone)
+            setCompanyID(data.CompanyID)
+            setCompanyName(data.CompanyName)
+            setCompanyLocation(data.CompanyLocation)
+            setSubCompanyName(data.SubCompanyName)
+            setSubCompanyLocation(data.SubCompanyLocation)
+            setSubCompanyID(data.SubCompanyID)
+            setTitle(data.Title)
+            setDate(data.Date.substring(0,10))
+            setSTime(data.STime)
+            setETime(data.ETime)
+            setDescription(data.Description)
+        } catch (error) {
         
-        axios.get("http://localhost:8080/TaskCompleted/").then((res) =>{
-            setTask(res.data.data);
-            console.log(Task);
-            
-        }).catch((e) =>{
-            alert(e)
-        })
-    }, [])
-    
-    
-    const updateDetails = (e) => {
-       navigate('/TaskEdit',{state : {props : e}})
-    }
-    const MoreDetails = (e) => {
-       navigate('/TaskDetails',{state : {props : e}})
-    }
-    
-    const Deletetask = (e) => {
-        // e.preventDefault();
-        if(window.confirm("Confirm Delete Task ?") === true){
-            const id = e._id;
-            console.log(id);
-            axios.delete(`http://localhost:8080/Task/Delete/${id}`).then((res)=>{
-                alert(res.data.state)
-                navigate(0)
-            })
         }
-    }
-    const Completed = (e) => {
-        // e.preventDefault();
-        if(window.confirm("Confirm Task Completion ?") === true){
-
-            
-            const id = e._id;
-            console.log(id);
-            axios.delete(`http://localhost:8080/Task/Delete/${id}`).then((res)=>{
-                alert(res.data.state)
-                navigate(0)
-            })
-        }
-    }
+        
+        console.log(data);
+     
+  },[])
+    
+    const SubmitData = (e) =>{
+        e.preventDefault();
+        
+        
+        console.log(Date);
+        const Data ={
+            CompletedAt,
+            TaskID,
+            UserName,
+            UserEPFNO,
+            UserEmail,
+            CustomerName,
+            CustomerEmail,
+            CustomerPhone,
+            CompanyName,
+            CompanyLocation,
+            CompanyID,
+            SubCompanyName,
+            SubCompanyLocation,
+            SubCompanyID,
+            Title,
+            Date,
+            STime,
+            ETime,
+            Description,
+          }
+          console.log(UserEPFNO);
+          axios.post(`http://localhost:8080/CompletedTask/Add`,Data).then((res) => {
+            <Alert severity="warning">This is a warning alert — check it out!</Alert>
+              if(window.confirm("Confirm Delete Task ?") === true){
+                const id = e._id;
+                console.log(id);
+                axios.delete(`http://localhost:8080/Task/Delete/${TaskID}`).then((res)=>{
+                    alert(res.data.state)
+                    navigate(-1)
+                })
+            }
+            navigate(-1)
+          }).catch(err => {
+              alert(err)
+              
+          })
+        } 
 
     return (
         <>
     <Container style={{marginTop : '5%',display : 'block',width : '100%',justifyContent : 'center' }}>
-        <h1>Completed Task  :</h1>
-        <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'2%'}}>
-            
-            <Form className="d-flex" style={{width : '30%'}}>
-
-            <Form.Control
-              type="search"
-              value = {search}
-              placeholder="Name"
-              className="me-2"
-              aria-label="Search"
-              onChange={(e) =>{setSearch(e.target.value)}}
-            />
-            <Button >Search</Button>
-          </Form>
-        </div>
         
-        <CRow>
-         {
-         Task.filter((element) => {
-            if(search === ""){
-                return element
-            }else if ((element.UserName.toLowerCase()).includes(search.toLowerCase())){
-                return element
-            }
-        }).map((e,i) =>(
-             <CCol sm={6}>
-    
-                <CCard>
-                <CCardBody>
-                    <CCardTitle>
-                        <b>
-                            Task :</b>{e.Title}
-                        
-                    </CCardTitle>
-                    <CCardText>
-                        <b>
-                            Username : </b> {e.UserName} - {e.UserEPFNO}
-                        
-                    </CCardText>
-                    <CCardText>
-                        <b>
-                            Date : </b> {e.Date.substring(0, 10)}
-                        
-                    </CCardText>
-                    <CCardText>
-                        <b>
-                             Description :</b>{e.Description.substring(0, 200)}
-                    
-                    </CCardText>
-                    <CButton ovariant="outline-primary" style={{marginRight:'20px'}} onClick={() => {MoreDetails(e)}}>Details</CButton>
-                    {/* <CButton class="btn btn-warning" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</CButton> */}
-                    {/* <CButton class="btn btn-success" style={{marginRight:'20px'}} onClick={() => {Completed(e)}}>Completed</CButton> */}
-                    <CButton class="btn btn-danger" style={{marginRight:'20px'}} onClick={() => {Deletetask(e)}}>Delete</CButton>
-                </CCardBody>
-                </CCard><br></br>
-            </CCol>
-            ))}
-        </CRow>
+    <CModal size="sm" visible={visibleXL} onClose={() => navigate(-1)}>
+      <CModalHeader>
+        <CModalTitle>Complete Task</CModalTitle>
+      </CModalHeader>
+      <CModalBody>
+            <CCardText>
+                Completed Date :
+                <Form onSubmit={SubmitData}>
+                <Form.Group className='form-floating mb-3' style={{width:'100%' ,marginTop:'10px'}}>
+                    <Form.Control type="date"  placeholder="Date" value={CompletedAt} onChange={(e) => {setCompletedAt(e.target.value)}}  required />
+                    <Form.Label>Date:</Form.Label>
+                    <CButton class="btn btn-success" style={{marginRight:'20px',marginTop:'20px'}} type='submit'>Complete</CButton>
+                </Form.Group>
+                </Form>
+            </CCardText>
+        
+        
+      </CModalBody>
+    </CModal>
+       
     </Container>
         </>
   )

@@ -5,12 +5,12 @@ import Container from 'react-bootstrap/esm/Container'
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import { Card, CButton, CCard, CCardBody, CCardText, CCardTitle, CCol, CModal, CModalBody, CModalHeader, CModalTitle, CRow } from '@coreui/react';
+import { CAlert, CIcon, CButton, CCard, CCardBody, CCardText, CCardTitle, CCol, CModal, CModalBody, CModalHeader, CModalTitle, CRow } from '@coreui/react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
-function TaskList() {
+function TaskListCompleted() {
     var dateMDY;
     const [search,setSearch] = useState("");
     const [loading,setLoading] = useState(true);
@@ -22,7 +22,7 @@ function TaskList() {
     
     useEffect(() => {
         
-        axios.get("http://localhost:8080/Task/").then((res) =>{
+        axios.get("http://localhost:8080/CompletedTask/").then((res) =>{
             setTask(res.data.data);
             console.log(Task);
             
@@ -64,16 +64,9 @@ function TaskList() {
     return (
         <>
     <Container style={{marginTop : '5%',display : 'block',width : '100%',justifyContent : 'center' }}>
-        <h1>Task  :</h1>
+        <h1>Completed Tasks  :</h1>
         <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'2%'}}>
-            <a href='/InsertTask'>
-                
-            <Button variant="primary" style={{fontWeight : 'bold', marginRight:'10px'}}>+ Add</Button>
-            </a>
-            <a href='/CompletedList'>
-                
-            <Button variant="success" style={{fontWeight : 'bold', marginRight:'10px'}}>Completed</Button>
-            </a>
+            
             <Form className="d-flex" style={{width : '30%'}}>
 
             <Form.Control
@@ -113,12 +106,17 @@ function TaskList() {
                 <CCardBody>
                     <CCardTitle>
                         <b>
+                            Completed At :</b>{e.CompletedAt.substring(0, 10)}
+                        
+                    </CCardTitle>
+                    <CCardTitle>
+                        <b>
                             Task :</b>{e.Title}
                         
                     </CCardTitle>
                     <CCardText>
                         <b>
-                            Username : </b> {e.UserName} - {e.UserEPFNO}
+                            Completed By : </b> {e.UserName} - {e.UserEPFNO}
                         
                     </CCardText>
                     <CCardText>
@@ -132,8 +130,8 @@ function TaskList() {
                     
                     </CCardText>
                     <CButton ovariant="outline-primary" style={{marginRight:'20px'}} onClick={() => {MoreDetails(e)}}>More Details</CButton>
-                    <CButton class="btn btn-warning" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</CButton>
-                    <CButton class="btn btn-success" style={{marginRight:'20px'}} onClick={() => {Completed(e)}}>Completed</CButton>
+                    {/* <CButton class="btn btn-warning" style={{marginRight:'20px'}} onClick={() => {updateDetails(e)}}>Edit</CButton> */}
+                    {/* <CButton class="btn btn-success" style={{marginRight:'20px'}} onClick={() => {Completed(e)}}>Completed</CButton> */}
                     <CButton class="btn btn-danger" style={{marginRight:'20px'}} onClick={() => {Deletetask(e)}}>Delete</CButton>
                 </CCardBody>
                 </CCard><br></br>
@@ -145,4 +143,4 @@ function TaskList() {
   )
 }
 
-export default TaskList
+export default TaskListCompleted
