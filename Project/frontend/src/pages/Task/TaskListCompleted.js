@@ -47,7 +47,7 @@ function TaskListCompleted() {
         if(window.confirm("Confirm Delete Task ?") === true){
             const id = e._id;
             console.log(id);
-            axios.delete(`http://localhost:8080/Task/Delete/${id}`).then((res)=>{
+            axios.delete(`http://localhost:8080/CompletedTask/Delete/${id}`).then((res)=>{
                 alert(res.data.state)
                 navigate(0)
             })
