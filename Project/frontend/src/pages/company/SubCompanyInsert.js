@@ -48,6 +48,7 @@ function SubCompanyInsert() {
         
         axios.get("http://localhost:8080/Company/").then((res) =>{
                 setCompany(res.data.Company);
+                console.log(Company);
 
             }).catch((e) =>{
                 alert(e)

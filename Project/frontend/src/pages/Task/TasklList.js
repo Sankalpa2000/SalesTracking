@@ -30,6 +30,16 @@ function TaskList() {
             alert(e)
         })
     }, [])
+    useEffect(() => {
+        
+        axios.get("http://localhost:8080/Task/").then((res) =>{
+            setTask(res.data.data);
+            // console.log(Task);
+            
+        }).catch((e) =>{
+            alert(e)
+        })
+    }, [])
     
     
     const updateDetails = (e) => {
@@ -87,6 +97,16 @@ function TaskList() {
             <Button >Search</Button>
           </Form>
         </div>
+            <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'20px',alignItems:'center'}}>
+                    Search By User :<br></br>
+                <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
+                            <option value = ''  selected>Select User</option>
+                        {Users.map((e,i) =>(
+                            <option key={i} value={e.Name}>{e.Name}</option>
+                        ))}
+                    
+                </Form.Select>
+            </div>
             <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'20px',alignItems:'center'}}>
                     Search By User :<br></br>
                 <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
