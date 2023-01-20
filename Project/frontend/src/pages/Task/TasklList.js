@@ -16,6 +16,8 @@ function TaskList() {
     const [loading,setLoading] = useState(true);
     const [Users,setUsers] = useState([]);
     const [Task,setTask] = useState([]);
+    const [SearchDate,setSearchDate] = useState();
+    console.log(SearchDate);
     const navigate = useNavigate();
     const [visibleXL, setVisibleXL] = useState(false)
     
@@ -30,16 +32,16 @@ function TaskList() {
             alert(e)
         })
     }, [])
-    useEffect(() => {
+    // useEffect(() => {
         
-        axios.get("http://localhost:8080/Task/").then((res) =>{
-            setTask(res.data.data);
-            // console.log(Task);
+    //     axios.get("http://localhost:8080/Task/").then((res) =>{
+    //         setTask(res.data.data);
+    //         // console.log(Task);
             
-        }).catch((e) =>{
-            alert(e)
-        })
-    }, [])
+    //     }).catch((e) =>{
+    //         alert(e)
+    //     })
+    // }, [])
     
     
     const updateDetails = (e) => {
@@ -97,33 +99,35 @@ function TaskList() {
             <Button >Search</Button>
           </Form>
         </div>
-            <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'20px',alignItems:'center'}}>
-                    Search By User :<br></br>
+            
+                    
+           
+            
+                <Form.Group className='form-floating mb-3' style={{width:'40%'}}>
+                    
+                    
                 <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
-                            <option value = ''  selected>Select User</option>
+                            <option value = ''  selected>Select Name</option>
                         {Users.map((e,i) =>(
                             <option key={i} value={e.Name}>{e.Name}</option>
-                        ))}
+                            ))}
                     
                 </Form.Select>
-            </div>
-            <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'20px',alignItems:'center'}}>
-                    Search By User :<br></br>
-                <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
-                            <option value = ''  selected>Select User</option>
-                        {Users.map((e,i) =>(
-                            <option key={i} value={e.Name}>{e.Name}</option>
-                        ))}
+                            <Form.Label>Search By Name :</Form.Label>
+                            </Form.Group>
+                {/* <Form.Group className='form-floating mb-3' style={{width:'40%'}}>
+                    <Form.Control type="date"  placeholder="Date" value={SearchDate} onChange={(e) => {setSearchDate(e.target.value)}}  required />
+                    <Form.Label>Search By Date :</Form.Label>
+                </Form.Group>        */}
                     
-                </Form.Select>
-            </div>
+            
         
         <CRow>
          {
          Task.filter((element) => {
             if(search === ""){
                 return element
-            }else if ((element.UserName.toLowerCase()).includes(search.toLowerCase())){
+            }else if ((element.UserName.toLowerCase()).includes(search.toLowerCase())||(element.Date.substring(0,10)).includes(SearchDate)){
                 return element
             }
         }).map((e,i) =>(

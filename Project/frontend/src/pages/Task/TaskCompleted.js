@@ -94,15 +94,15 @@ function TaskCompleted() {
         //   console.log(UserEPFNO);
           axios.post(`http://localhost:8080/CompletedTask/Add`,Data).then((res) => {
             <Alert severity="warning">This is a warning alert — check it out!</Alert>
-              if(window.confirm("Confirm Delete Task ?") === true){
+              
                 const id = e._id;
                 // console.log(id);
                 axios.delete(`http://localhost:8080/Task/Delete/${TaskID}`).then((res)=>{
-                    alert(res.data.state)
+                    // alert(res.data.state)
                     navigate('/CompletedList')
                 })
-            }
-            navigate(-2)
+            
+            
           }).catch(err => {
               alert(err)
           })
