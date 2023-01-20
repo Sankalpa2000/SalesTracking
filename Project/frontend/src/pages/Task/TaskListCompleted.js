@@ -24,7 +24,7 @@ function TaskListCompleted() {
     }, [])
     
     const MoreDetails = (e) => {
-       navigate('/TaskDetails',{state : {props : e}})
+       navigate('/TaskCompleteDetails',{state : {props : e}})
     }
     const Deletetask = (e) => {
         if(window.confirm("Confirm Delete Task ?") === true){
