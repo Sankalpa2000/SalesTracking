@@ -12,14 +12,15 @@ import { Button } from 'bootstrap'
 export default class Calender extends React.Component {
 
 
-    
+  
+  
     state = {
-        weekendsVisible: true,
+      weekendsVisible: true,
         currentEvents: []
-    }
-    
+      }
+      
     render() {
-
+      
 
         return (
             <div className='demo-app'>
@@ -48,12 +49,13 @@ export default class Calender extends React.Component {
             eventAdd={function(){}}
             eventChange={function(){}}
             eventRemove={function(){}}
+            eventGet={function(){}}
             
             />
         </div>
       </div>
     )
-}
+  }
 
 renderSidebar() {
     return (
@@ -90,15 +92,16 @@ handleWeekendsToggle = () => {
     this.setState({
         weekendsVisible: !this.state.weekendsVisible
     })
-}
+  }
 handleDateClick = (arg) => { // bind with an arrow function
-    // navigate('/TaskInsert');
+  const navigate = useNavigate();
+    navigate('/TaskInsert');
     alert(arg.dateStr)
+    console.log(arg);
 }
 handleDateSelect = (selectInfo) => {
-    const navigate = useNavigate();
 
-    navigate('/TaskInsert');
+    // navigate('/TaskInsert');
     
     // onclick(navigate('/TaskInsert'))
     
@@ -106,9 +109,9 @@ handleDateSelect = (selectInfo) => {
     let name = prompt('Please enter a new title for your Name')
     let calendarApi = selectInfo.view.calendar
     // console.log(selectInfo)
-
+    
     calendarApi.unselect() // clear date selection
-
+    
     if (title) {
     calendarApi.addEvent({
         id: createEventId(),
@@ -119,7 +122,7 @@ handleDateSelect = (selectInfo) => {
         allDay: selectInfo.allDay
       })
     }
-    console.log(selectInfo.startStr);
+    console.log(calendarApi);
   }
 
   handleEventClick = (clickInfo) => {
