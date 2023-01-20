@@ -38,9 +38,9 @@ function TaskList() {
     const MoreDetails = (e) => {
        navigate('/TaskDetails',{state : {props : e}})
     }
-    const Completed = (e) => {
-       navigate('/TaskDetails',{state : {props : e}})
-    }
+    // const Completed = (e) => {
+    //    navigate('/TaskDetails',{state : {props : e}})
+    // }
     
     const Deletetask = (e) => {
         // e.preventDefault();
@@ -118,7 +118,7 @@ function TaskList() {
                     </CCardTitle>
                     <CCardText>
                         <b>
-                            Username : </b> {e.UserName} - {e.UserEPFNO}
+                            Username : </b> {e.UserName}
                         
                     </CCardText>
                     <CCardText>

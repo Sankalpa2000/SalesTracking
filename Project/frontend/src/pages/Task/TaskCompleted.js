@@ -99,13 +99,12 @@ function TaskCompleted() {
                 // console.log(id);
                 axios.delete(`http://localhost:8080/Task/Delete/${TaskID}`).then((res)=>{
                     alert(res.data.state)
-                    navigate(-1)
+                    navigate('/CompletedList')
                 })
             }
-            navigate(-1)
+            navigate(-2)
           }).catch(err => {
               alert(err)
-              
           })
         } 
 
