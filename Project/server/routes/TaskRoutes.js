@@ -119,4 +119,14 @@ router.route("/Delete/:id").delete(async (req,res) => {
         res.status(100).send({status : err})
     })
  })
+router.route("/GetByDate/:Date").get(async (req,res) => {
+    const Date = req.params.Date;
+    console.log(Date);
+    await Task.find({Date:Date}).then((data)=>{
+        console.log(data);
+        res.status(200).send({Task:data})
+    }).catch(err =>{
+        res.status(400).send({state:err})
+    })
+ })
 module.exports = router;

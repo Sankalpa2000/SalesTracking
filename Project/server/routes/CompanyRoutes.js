@@ -55,7 +55,7 @@ router.route("/Delete/:id").delete(async (req,res) => {
     console.log(id);
     await Company.find({_id:id}).then((data)=>{
         console.log(data);
-        res.status(200).send({SubCompany:data})
+        res.status(200).send({Company:data})
     }).catch(err =>{
         res.status(400).send({state:err})
     })
