@@ -11,54 +11,27 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 
 function TaskList() {
-    var dateMDY;
     const [search,setSearch] = useState("");
-    const [loading,setLoading] = useState(true);
     const [Users,setUsers] = useState([]);
     const [Task,setTask] = useState([]);
-    const [SearchDate,setSearchDate] = useState();
-    console.log(SearchDate);
     const navigate = useNavigate();
-    const [visibleXL, setVisibleXL] = useState(false)
-    
     
     useEffect(() => {
-        
         axios.get("http://localhost:8080/Task/").then((res) =>{
             setTask(res.data.data);
-            // console.log(Task);
-            
         }).catch((e) =>{
             alert(e)
         })
     }, [])
-    // useEffect(() => {
-        
-    //     axios.get("http://localhost:8080/Task/").then((res) =>{
-    //         setTask(res.data.data);
-    //         // console.log(Task);
-            
-    //     }).catch((e) =>{
-    //         alert(e)
-    //     })
-    // }, [])
-    
-    
     const updateDetails = (e) => {
        navigate('/TaskEdit',{state : {props : e}})
     }
     const MoreDetails = (e) => {
        navigate('/TaskDetails',{state : {props : e}})
     }
-    // const Completed = (e) => {
-    //    navigate('/TaskDetails',{state : {props : e}})
-    // }
-    
     const Deletetask = (e) => {
-        // e.preventDefault();
         if(window.confirm("Confirm Delete Task ?") === true){
             const id = e._id;
-            // console.log(id);
             axios.delete(`http://localhost:8080/Task/Delete/${id}`).then((res)=>{
                 alert(res.data.state)
                 navigate(0)
@@ -127,7 +100,7 @@ function TaskList() {
          Task.filter((element) => {
             if(search === ""){
                 return element
-            }else if ((element.UserName.toLowerCase()).includes(search.toLowerCase())||(element.Date.substring(0,10)).includes(SearchDate)){
+            }else if ((element.UserName.toLowerCase()).includes(search.toLowerCase())){
                 return element
             }
         }).map((e,i) =>(
