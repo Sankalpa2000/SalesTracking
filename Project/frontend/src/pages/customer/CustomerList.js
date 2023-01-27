@@ -14,7 +14,15 @@ function CustomerList() {
     const [Users,setUsers] = useState();
     const navigate = useNavigate();
     
-    
+    const [ customers, setCustomers ] = useState ( [] )
+        useEffect( () => {
+            async function fetchCustomers(){
+            const { data } = await axios.get('http://127.0.0.1:8000/api/customers/')
+            setCustomers(data)
+        }
+        fetchCustomers()
+    }, [])
+
     useEffect(() => {
         
         axios.get("http://localhost:8080/Customer/").then((res) =>{
