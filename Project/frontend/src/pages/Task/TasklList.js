@@ -11,52 +11,27 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 
 function TaskList() {
-    var dateMDY;
     const [search,setSearch] = useState("");
-    const [loading,setLoading] = useState(true);
     const [Users,setUsers] = useState([]);
     const [Task,setTask] = useState([]);
     const navigate = useNavigate();
-    const [visibleXL, setVisibleXL] = useState(false)
-    
     
     useEffect(() => {
-        
         axios.get("http://localhost:8080/Task/").then((res) =>{
             setTask(res.data.data);
-            // console.log(Task);
-            
         }).catch((e) =>{
             alert(e)
         })
     }, [])
-    useEffect(() => {
-        
-        axios.get("http://localhost:8080/Task/").then((res) =>{
-            setTask(res.data.data);
-            // console.log(Task);
-            
-        }).catch((e) =>{
-            alert(e)
-        })
-    }, [])
-    
-    
     const updateDetails = (e) => {
        navigate('/TaskEdit',{state : {props : e}})
     }
     const MoreDetails = (e) => {
        navigate('/TaskDetails',{state : {props : e}})
     }
-    const Completed = (e) => {
-       navigate('/TaskDetails',{state : {props : e}})
-    }
-    
     const Deletetask = (e) => {
-        // e.preventDefault();
         if(window.confirm("Confirm Delete Task ?") === true){
             const id = e._id;
-            // console.log(id);
             axios.delete(`http://localhost:8080/Task/Delete/${id}`).then((res)=>{
                 alert(res.data.state)
                 navigate(0)
@@ -97,26 +72,28 @@ function TaskList() {
             <Button >Search</Button>
           </Form>
         </div>
-            <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'20px',alignItems:'center'}}>
-                    Search By User :<br></br>
+            
+                    
+           
+            
+                <Form.Group className='form-floating mb-3' style={{width:'40%'}}>
+                    
+                    
                 <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
-                            <option value = ''  selected>Select User</option>
+                            <option value = ''  selected>Select Name</option>
                         {Users.map((e,i) =>(
                             <option key={i} value={e.Name}>{e.Name}</option>
-                        ))}
+                            ))}
                     
                 </Form.Select>
-            </div>
-            <div style={{flex : 1,display : 'flex',justifyContent : 'right',marginBottom:'20px',alignItems:'center'}}>
-                    Search By User :<br></br>
-                <Form.Select onChange={(e) =>{setSearch(e.target.value)}} required  style={{fontWeight : 'bold', marginRight:'10px'}}>
-                            <option value = ''  selected>Select User</option>
-                        {Users.map((e,i) =>(
-                            <option key={i} value={e.Name}>{e.Name}</option>
-                        ))}
+                            <Form.Label>Search By Name :</Form.Label>
+                            </Form.Group>
+                {/* <Form.Group className='form-floating mb-3' style={{width:'40%'}}>
+                    <Form.Control type="date"  placeholder="Date" value={SearchDate} onChange={(e) => {setSearchDate(e.target.value)}}  required />
+                    <Form.Label>Search By Date :</Form.Label>
+                </Form.Group>        */}
                     
-                </Form.Select>
-            </div>
+            
         
         <CRow>
          {
@@ -138,7 +115,7 @@ function TaskList() {
                     </CCardTitle>
                     <CCardText>
                         <b>
-                            Username : </b> {e.UserName} - {e.UserEPFNO}
+                            Username : </b> {e.UserName}
                         
                     </CCardText>
                     <CCardText>

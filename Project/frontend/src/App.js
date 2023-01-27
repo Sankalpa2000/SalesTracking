@@ -27,7 +27,10 @@ import TaskDetails from './pages/Task/TaskDetails';
 import TaskEdit from './pages/Task/TaskEdit';
 import TaskCompleted from './pages/Task/TaskCompleted';
 import TaskListCompleted from './pages/Task/TaskListCompleted';
-// import Calender from './pages/calender/Calender';
+
+import Calender from './pages/calender/Calender';
+import TaskCompletedDetails from './pages/Task/TaskCompletedDetails';
+
 Modal.setAppElement('#root')
 function App() {
   return (
@@ -56,6 +59,7 @@ function App() {
           <Route exact path='/TaskEdit' element={<TaskEdit/>}/>
           <Route exact path='/ViewCompleted' element={<TaskCompleted/>}/>
           <Route exact path='/CompletedList' element={<TaskListCompleted/>}/>
+          <Route exact path='/TaskCompleteDetails' element={<TaskCompletedDetails/>}/>
           
 
         </Routes>
